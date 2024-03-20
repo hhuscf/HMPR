@@ -1,3 +1,3 @@
 # HMPR
-A Hierarchical and Multi-modal Framework for Place Recognition
+A Hierarchical and Multi-modal Framework for Place Recognition <br />
 The code will come soon...
