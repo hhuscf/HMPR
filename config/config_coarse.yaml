@@ -1,0 +1,54 @@
+# arch
+arch_name: 'image_coarse' # or pointcloud_coarse
+
+# model
+model:
+    pool_method: 'gem'
+    npoint: [ 1024, 512, 64 ]
+    radius: [ 0.1, 0.2, 0.4 ]
+    nsample: 32
+    mlps: [ [ 3, 32, 32, 64 ], [ 64, 64, 64, 128 ], [ 128, 128, 128, 256 ] ]
+
+# checkpoint
+ckpt_name: 'coarse_pairwise.pth'
+
+# training parameters
+use_gpu: True
+epochs: 50
+train_batch_size: 64
+test_batch_size: 8
+show_freq: 20    # unit: batch
+eval_freq: -1    # unit: batch, -1 means eval once at the end of epoch
+workers: 8       # num threads to load data
+
+# datasets
+dataset:
+    name: robotcar
+    base_path: /xxx/datasets/oxford/  # your oxford robotCar dataset location
+    pickle_path: ../generate_queries
+    train_pickle: training_queries_baseline.pickle
+    test_pickle: test_queries_baseline.pickle
+    image_folder: 'image_20m_10overlap'  # your image folder in base_path
+    pc_folder: 'pointcloud_20m_10overlap'  # your pointcloud folder in base_path
+    augmentation: False
+
+# loss params
+loss:
+    a: 1.0
+    m: 25.0
+    Lp: 1
+
+# optimizer, Adam
+optimize:
+    base_lr: 0.001
+    betas: [0.9, 0.999]
+    weight_decay: 0.001
+    amsgrad: True
+
+# learning rate scheduler, ReduceLROnPlateau
+# For the meaning of parameters, see pytorch document
+lr_scheduler:
+    factor: 0.9
+    patience: 6
+    cooldown: 2
+

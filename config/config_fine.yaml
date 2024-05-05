@@ -1,0 +1,35 @@
+# model
+model:
+    pool_method: 'gem'
+    npoint: [ 1024, 512, 64 ]
+    radius: [ 0.1, 0.2, 0.4 ]
+    nsample: 32
+    mlps: [ [ 3, 32, 32, 64 ], [ 64, 64, 64, 128 ], [ 128, 128, 128, 256 ] ]
+
+# checkpoint
+pretrained_image_ckpt_path: '../log/coarse_net/image_coarse/coarse_pairwise_best.pth'
+pretrained_pc_ckpt_path: '../log/coarse_net/pointcloud_coarse/coarse_pairwise_best.pth'
+ckpt_name: 'fine_imgpc_pairwise.pth'
+
+dataset:
+    name: robotcar
+    base_path: /xxx/datasets/oxford/  # your oxford robotCar dataset location
+    pickle_path: ../generate_queries
+    train_pickle: training_queries_baseline.pickle
+    test_pickle: eval_queries_fine_index.pickle  # generate by generate_topK_candidates.py
+    image_folder: 'image_20m_10overlap'  # your image folder in base_path
+    pc_folder: 'pointcloud_20m_10overlap'  # your pointcloud folder in base_path
+    augmentation: False
+
+# training parameters
+use_gpu: True
+epochs: 50
+train_batch_size: 64
+workers: 8
+
+# optimizer, Adam
+optimize:
+    base_lr: 0.001
+    betas: [0.9, 0.999]
+    weight_decay: 0.001
+    amsgrad: True
