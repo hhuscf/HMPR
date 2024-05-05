@@ -37,7 +37,7 @@ cd train && python train_fine.py --work_path ../log/fine_net --config_path ../co
 ```
 
 ## Acknowledgements
-Code is built based on [AdaFusion](https://github.com/MetaSLAM/AdaFusion), [PointNetVLAD](https://github.com/mikacuy/pointnetvlad), [PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) and [CVTNet](https://github.com/BIT-MJY/CVTNet).
+Code is built based on [AdaFusion](https://github.com/MetaSLAM/AdaFusion), [PointNetVLAD](https://github.com/mikacuy/pointnetvlad), [PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch), [PointWeb](https://github.com/hszhao/PointWeb) and [CVTNet](https://github.com/BIT-MJY/CVTNet).
 
 
 
